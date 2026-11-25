@@ -1,0 +1,45 @@
+# TaCo-B paper recipe (256 px search, 128 px template).
+model:
+  variant: TaCo-B
+  pretrained_backbone: pretrained_models/repvit_m1_5_distill_300e.pth
+  freeze_bn: true  # Freeze running statistics in the shared CNN body.
+
+data:
+  template: {size: 128, factor: 2.0, center_jitter: 0, scale_jitter: 0}
+  search: {size: 256, factor: 4.0, center_jitter: 3, scale_jitter: 0.25}
+  max_sample_interval: 200
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+  train:
+    datasets: [LASOT, GOT10K_vottrain, COCO17, VASTTRACK]
+    ratios: [1, 1, 1, 1]
+    samples_per_epoch: 60000
+  val:
+    datasets: [GOT10K_votval]
+    ratios: [1]
+    samples_per_epoch: 10000
+  pipeline: auto  # Use DALI when available on CUDA.
+
+dali:
+  workers: 4  # Per process, for encoded frames and crop geometry.
+
+train:
+  epochs: 300
+  batch_size: 32  # Per process. Four GPUs yield a global batch of 128.
+  lr: 0.0008
+  backbone_multiplier: 0.1
+  weight_decay: 0.0001
+  lr_drop_epoch: 240
+  lr_decay_rate: 0.1
+  grad_clip_norm: 0.1
+  giou_weight: 2.0
+  l1_weight: 5.0
+  focal_weight: 1.0
+  amp: true
+  amp_dtype: float16
+  nan_skip: true
+  num_workers: 8
+  print_interval: 100
+  val_epoch_interval: 1000
+  save_interval: 20
+  seed: 42

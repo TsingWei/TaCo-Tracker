@@ -1,0 +1,14 @@
+# Core preprocessing & evaluation dependencies (no PyTorch required for ONNX inference)
+numpy>=1.21.0
+opencv-python>=4.5.0
+tqdm>=4.60.0
+
+# ONNX Runtime backend (replace with `onnxruntime-gpu>=1.16.0` for NVIDIA GPU inference)
+onnxruntime>=1.16.0
+
+# Optional: required only for PyTorch inference (`--backend pytorch`) and ONNX export (`deploy/export_onnx.py`).
+# Install a matching torch + torchvision (+ CUDA) pair so `torchvision.ops.roi_align` is supported on your device:
+#   torch>=2.4
+#   torchvision>=0.19
+#   onnx>=1.14.0
+#   onnxscript>=0.3.0  # Only needed if your PyTorch version invokes the dynamo ONNX path (`export_onnx.py` passes `dynamo=False`).
