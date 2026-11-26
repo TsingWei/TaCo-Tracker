@@ -6,7 +6,7 @@
 ![PyTorch](https://img.shields.io/badge/PyTorch-Training-EE4C2C?logo=pytorch&logoColor=white)
 ![ONNX Runtime](https://img.shields.io/badge/ONNX%20Runtime-Inference-005CED)
 ![Edge NPU and Arm CPU](https://img.shields.io/badge/Edge-Rockchip%20NPU%20%7C%20Arm%20CPU-157A6E)
-![Paper link pending](https://img.shields.io/badge/Paper-Link%20pending-lightgrey)
+[![arXiv](https://img.shields.io/badge/arXiv-2611.34084-b31b1b)](https://arxiv.org/abs/2611.34084)
 [![Trained weights](https://img.shields.io/badge/Weights-Download-blue)](weights/README.md)
 
 [Model zoo](#taco-model-zoo) · [Predictions](#download-predictions) · [Quick start](#quick-start) · [Edge deployment](#7-edge-deployment-and-benchmarking)
@@ -435,4 +435,13 @@ The backbone implementations build on LowFormer and RepViT. The tracker follows 
 ## Citation
 
 ```bibtex
+@misc{wei2026tacorethinkingcorrelationvisual,
+  title         = {{TaCo}: Rethinking Correlation for Visual Tracking on Edge Devices},
+  author        = {Qingmao Wei and Fagui Liu and Quan Tang},
+  year          = {2026},
+  eprint        = {2611.34084},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2611.34084},
+}
 ```
